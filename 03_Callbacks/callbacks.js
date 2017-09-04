@@ -16,3 +16,6 @@ function getPost () {
 }
 
 getPost();
+
+console.log("loading header...");
+console.log("rendering main grid...");

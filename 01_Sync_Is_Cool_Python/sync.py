@@ -11,3 +11,5 @@ def get_post():
 
 if __name__ == "__main__":
     get_post()
+    print("loading header...") # blocked by API call
+    print("rendering main grid...") # blocked by API call

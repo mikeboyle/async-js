@@ -1,15 +1,14 @@
 const request = require("request");
 
-let post;
-
 function getPost () {
+  let post = {};
+
   console.log("Fetching post from API...");
 
   request({
     url: "https://jsonplaceholder.typicode.com/posts/1"
   }, (err, res, body) => {
     if (!err) {
-      console.log(post)
       post = JSON.parse(body); // assign to post here?? :pray:
     }
   });
@@ -20,3 +19,6 @@ function getPost () {
 }
 
 getPost();
+
+console.log("loading header...");
+console.log("rendering main grid...");

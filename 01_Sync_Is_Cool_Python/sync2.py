@@ -23,3 +23,5 @@ def get_post_and_comments():
 
 if __name__ == "__main__":
     get_post_and_comments()
+    print("loading header...") # blocked by API call
+    print("rendering main grid...") # blocked by API call

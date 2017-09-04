@@ -27,7 +27,7 @@ async function getPostAndComments () {
     console.log("Fetching comments from API...");
     const commentsUrl = `https://jsonplaceholder.typicode.com/comments?postId=${post.id}`
     const comments = await getWithPromise(commentsUrl);
-    
+
     comments.forEach( (comment) => {
       console.log(comment["id"])
       console.log(`NAME: ${comment.name}`);
@@ -40,3 +40,7 @@ async function getPostAndComments () {
 }
 
 getPostAndComments();
+
+// stil not blocked by API call
+console.log("loading header...");
+console.log("rendering main grid...");

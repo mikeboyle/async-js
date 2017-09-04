@@ -37,3 +37,6 @@ function getPostAndComments() {
 }
 
 getPostAndComments();
+
+console.log("loading header...");
+console.log("rendering main grid...");

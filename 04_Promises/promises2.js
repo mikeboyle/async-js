@@ -39,3 +39,7 @@ getWithPromise("https://jsonplaceholder.typicode.com/posts/1")
     return comments;
   })
   .catch( (err) => console.log(`ERROR: ${err}`));
+
+// stil not blocked by API call
+console.log("loading header...");
+console.log("rendering main grid...");
