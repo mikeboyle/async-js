@@ -1,0 +1,5 @@
+bin/
+lib/
+include/
+node_modules/
+pip-selfcheck.json
