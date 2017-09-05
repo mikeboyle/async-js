@@ -8,36 +8,45 @@ function getWithPromise (url) {
       if (err) {
         reject(err);
       } else {
-        console.log(url); // api requests can finish in any order
         resolve(JSON.parse(body));
       }
     });
   });
 }
 
+function renderPost(data) {
+  // order of data guaranteed to be in order of promises
+  const post = data[0];
+  console.log(`TITLE: ${post.title}`);
+  console.log(`BODY: ${post.body}`);
+  return data;
+}
+
+function renderComments(data) {
+  // order of data guaranteed to be in order of promises
+  const comments = data[1];
+  comments.forEach( (comment) => {
+    console.log(comment["id"])
+    console.log(`NAME: ${comment.name}`);
+    console.log(`EMAIL: ${comment.email}`);
+    console.log("");
+  });
+  return data;
+}
+
 function getPostAndComments() {
-  Promise.all([
-    getWithPromise(`https://jsonplaceholder.typicode.com/posts/1`),
-    getWithPromise(`https://jsonplaceholder.typicode.com/comments?postId=1`)
-  ])
-    .then( (data) => {
-      const post = data[0]; // order of data guaranteed to be in order of promises
-      console.log(`TITLE: ${post.title}`);
-      console.log(`BODY: ${post.body}`);
-      return data;
+  console.log("Fetching post from API...");
+  getWithPromise("https://jsonplaceholder.typicode.com/posts/1")
+    .then( (post) => {
+      console.log("Fetching comments from API...");
+      const comments_url = `https://jsonplaceholder.typicode.com/comments?postId=${post.id}`
+      return Promise.all([post, getWithPromise(comments_url)]);
     })
-    .then( (data) => {
-      const comments = data[1];
-      comments.forEach( (comment) => {
-        console.log(comment["id"])
-        console.log(`NAME: ${comment.name}`);
-        console.log(`EMAIL: ${comment.email}`);
-        console.log("");
-      })
-      return data;
-    })
+    .then( (data) => renderPost(data) )
+    .then( (data) => renderComments(data) )
     .catch( (err) => console.log(`ERROR: ${err}`));
 }
+
 getPostAndComments();
 
 // stil not blocked by API call
