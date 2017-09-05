@@ -19,13 +19,16 @@ function printField (json, key) {
   return json;
 }
 
-console.log("Fetching post from API...");
+function getPost() {
+  console.log("Fetching post from API...");
 
-getWithPromise("https://jsonplaceholder.typicode.com/posts/1")
-  .then( (post) => printField(post, "title") )
-  .then( (post) => printField(post, "body") )
-  .catch( (err) => console.log(`ERROR: ${err}`));
+  getWithPromise("https://jsonplaceholder.typicode.com/posts/1")
+    .then( (post) => printField(post, "title") )
+    .then( (post) => printField(post, "body") )
+    .catch( (err) => console.log(`ERROR: ${err}`));
+}
 
+getPost();
 // stil not blocked by API call
 console.log("loading header...");
 console.log("rendering main grid...");
